@@ -1,0 +1,259 @@
+@import './variables';
+
+// reset
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 13px;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2em;
+  background: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: #999;
+}
+p {
+  line-height: 1.5em;
+}
+
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+// text align
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var !important;
+  }
+}
+
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+// text overflow
+.text-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// width, height
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+// flex
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.text-left {
+    text-align: left;
+}
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+// m-0, mx-0
+@each $typeKey, $type in $spacing-types {
+  // .m-1
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size;
+    }
+  }
+  // .mx-1 , .my-1
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+  // .mt-1
+  @each $directionKey, $direction in $spacing-directions {
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
+// button
+.btn {
+  border:none;
+  border-radius: 0.1538rem;
+  font-size: map-get($font-sizes, 'sm') * $base-font-size;
+  padding: 0.2rem 0.6rem;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: map-get($colors, 'primary');
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    background: map-get($colors, 'white-1');
+    border: 1px solid map-get($colors, 'white-2');
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+}
+// nav
+.nav {
+  display: flex;
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+    &.active {
+      color: map-get($colors, 'primary');
+      border-bottom-color: map-get($colors, 'primary');
+    }
+  }
+  &.nav-inverse {
+    .nav-item {
+      color: map-get($colors, 'white');
+      &.active {
+        border-bottom-color: map-get($colors, 'white');
+      }
+    }
+  }
+  
+}
+.text-ellipsis{
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    // line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+// sprite 图标 精灵图片
+// 精灵图片定位工具: www.spritecow.com
+.sprite {
+  background: url(../index.png) no-repeat 0 0;
+  background-size: 28.8462rem;
+  display: inline-block;
+  &.sprite-news {
+    //  爆料站
+    // 转单位 ： alt + z
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.546% 15.517%;
+  }
+  &.sprite-story {
+    // 故事站
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 90.483% 15.614%;
+  }
+  &.sprite-shop{
+    // 周边商城
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 36.746% 0.924%;
+  }
+  &.sprite-tiyan {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 10.408% 15.517%;
+  }
+  &.sprite-newpeople{
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 89.733% 1.266%;
+  }
+  &.sprite-inherit{
+    // 荣耀传承
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 36.467% 15.287%;
+  }
+  &.sprite-camp {
+    // 王者营地
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-public{
+    //   公众号
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 0 96.207%;
+  }
+  &.sprite-edition{
+    // 版本介绍
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 36.467% 15.287%;
+  }
+  &.sprite-duiju {
+    // 对局环境
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-wangzhetuan{
+    //   无限王者团
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-interaction{
+    //   创意互动营
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-arrow{
+    width: 0.7692rem;
+    height: 0.7692rem;
+    background-position: 38.577% 52.076%;
+  }
+}
+// borders
+@each $dir in (top, right, bottom, left) {
+  .border-#{$dir} {
+    border-#{$dir}: 1px solid $border-color;
+  }
+}
